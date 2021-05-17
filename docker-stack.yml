@@ -102,7 +102,20 @@ services:
       - ./grafana/config.monitoring
     networks:
       - monitor-net
-    user: "472"
+    deploy:
+      placement:
+        constraints:
+          - node.role==manager
+      restart_policy:
+        condition: on-failure
+
+  loki:
+    image: grafana/loki
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - monitor-net
     deploy:
       placement:
         constraints:
