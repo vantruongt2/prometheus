@@ -1,12 +1,10 @@
-global:
-  resolve_timeout: 1m
-  slack_api_url: ''
-
 route:
-  receiver: 'slack-notifications'
+  receiver: 'slack'
 
 receivers:
-- name: 'slack-notifications'
-  slack_configs:
-  - channel: '#grafana-logs'
-    send_resolved: true
+  - name: 'slack'
+#       slack_configs:
+#           - send_resolved: true
+#             username: '<username>'
+#             channel: '#<channel-name>'
+#             api_url: '<incomming-webhook-url>'
